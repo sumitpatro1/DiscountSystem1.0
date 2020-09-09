@@ -6,6 +6,6 @@ namespace PromotionSystem1._0.Services
 {
     interface IPromotionService
     {
-        float CalculatePromotion();
+        float CalculateTotalPrice(string purchase);
     }
 }

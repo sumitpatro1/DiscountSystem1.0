@@ -68,12 +68,39 @@ namespace PromotionSystemTestProject
         {
             try
             {
-                promotionSvc.CalculatePromotion();
+                promotionSvc.CalculateTotalPrice(String.Empty);
                 Assert.Pass();
             }
             catch (SuccessException)
             {
 
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+
+        [Test]
+        public void TestCalculatePromotionPositive()
+        {
+            try
+            {
+                var retVal = promotionSvc.CalculateTotalPrice("A");
+                Assert.AreEqual(1,retVal);
+            }
+            catch (Exception)
+            {
+                Assert.Fail();
+            }
+        }
+        [Test]
+        public void TestCalculatePromotionNegative()
+        {
+            try
+            {
+                var retVal = promotionSvc.CalculateTotalPrice("A");
+                Assert.AreNotEqual(0, retVal);
             }
             catch (Exception)
             {

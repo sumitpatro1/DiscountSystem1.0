@@ -27,18 +27,26 @@ namespace PromotionSystem1._0.Services
         public Dictionary<char,float> RateChart { get; set; }
         public List<Tuple<string, float, PromotionTypes>> PromotionList { get; set; }
 
-        public float CalculatePromotion()
+        public float CalculateTotalPrice(string purchase)
         {
             throw new NotImplementedException();
         }
         public void DisplayRateChart()
         {
-
+            Console.WriteLine($"The Rate Chart : \n");
+            foreach(var item in RateChart)
+            {
+                Console.WriteLine($"SKU : {item.Key} || Unit Price : {item.Value}\n");
+            }
         }
 
         public void DisplayPromotionList()
         {
-
+            Console.WriteLine($"The Rate Chart : \n");
+            foreach (var item in PromotionList)
+            {
+                Console.WriteLine($"Promotion Rule : {item.Item1} || Promotion Price : {item.Item2} || Promotion Type : {item.Item3}\n");
+            }
         }
 
 
