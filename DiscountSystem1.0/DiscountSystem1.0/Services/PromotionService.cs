@@ -1,6 +1,7 @@
 ﻿using PromotionSystem1._0.Core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PromotionSystem1._0.Services
@@ -68,7 +69,30 @@ namespace PromotionSystem1._0.Services
 
         public List<char> GetPurchaseList(string purchase)
         {
-            throw new NotImplementedException();
+            List<char> purchaseList = new List<char>();
+            try
+            {
+                var purchaseItemsSeparated = new List<string>(purchase.Split(','));
+                purchaseItemsSeparated.ForEach(item =>
+                {
+                    int multiple;
+                    var multipleValue = item.Length > 1 ? item.Substring(0, item.Length - 1) : "1";
+                    if (Int32.TryParse(multipleValue, out multiple) && RateChart.ContainsKey(item[item.Length - 1]))
+                    {
+                        purchaseList.AddRange(Enumerable.Repeat(item[item.Length - 1], multiple));
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                });
+                return purchaseList;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Failed to process, please make sure you mention the purchase list in the format mentioned, also do not enter items that are not available in rate chart.");
+                throw ex;
+            }
         }
 
         public Dictionary<List<char>, float> GetPromotionSimplified()
