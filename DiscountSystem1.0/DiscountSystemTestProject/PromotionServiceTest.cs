@@ -247,7 +247,13 @@ namespace PromotionSystemTestProject
         {
             try
             {
-                promotionSvc.CalculateMinimumPossiblePrice(null,null);
+                var purchaseList = new List<char>() { 'A' };
+                var simplifiedPromotionList = new Dictionary<List<char>, float>()
+                    {
+                        { new List<char>{ 'A','A','A'}, 2 },
+                        { new List<char>{ 'A','B','C'}, 3 },
+                    };
+                promotionSvc.CalculateMinimumPossiblePrice(purchaseList, simplifiedPromotionList);
                 Assert.Pass();
             }
             catch (SuccessException)
@@ -291,7 +297,7 @@ namespace PromotionSystemTestProject
                         { new List<char>{ 'A','B','C'}, 3 },
                     };
                 var actual = promotionSvc.CalculateMinimumPossiblePrice(purchaseList, simplifiedPromotionList);
-                Assert.AreEqual(0, actual);
+                Assert.AreNotEqual(0, actual);
             }
             catch (Exception)
             {

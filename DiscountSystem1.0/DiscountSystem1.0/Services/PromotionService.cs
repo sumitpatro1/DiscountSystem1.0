@@ -120,9 +120,42 @@ namespace PromotionSystem1._0.Services
             return simplifiedPromotionList;
         }
 
-        public float CalculateMinimumPossiblePrice(List<char> purchaseList, Dictionary<List<char>, float> simplifiedPromotionList)
+        public float CalculateMinimumPossiblePrice(List<char> purchaseList, Dictionary<List<char>, float> promotions)
         {
-            throw new NotImplementedException();
+            var clonePurchaseList = new List<char>(purchaseList);
+            float total = 0;
+            //If discounts exist then only try to apply discount
+            if (promotions.Any())
+            {
+                var promotionValue = promotions.First().Value;
+                foreach (var key in promotions.First().Key)
+                {
+                    //If current promotion cannot be applied because items does not exist in the purchase list then, remove current promotion from the promotion list
+                    if (!clonePurchaseList.Remove(key))
+                    {
+                        promotionValue = 0;
+                        clonePurchaseList = new List<char>(purchaseList);
+                        promotions = promotions.Skip(1).ToDictionary(key => key.Key, value => value.Value);
+                        break;
+                    };
+                }
+
+                // Recurssive Implementation
+                // if discount applied then items are removed from the purchase list
+                var innerTotal = promotionValue + CalculateMinimumPossiblePrice(clonePurchaseList, promotions);
+
+                // if promotionValue > 0 then promotion appplied successfully and promotion also exists in the promotion list
+                // for such condition we will remove the current promotion from the promotion list and we will pass the unaltered purchase items
+                // this is done to cover the scenario where we skip a discount and check whether the amont will be lesser if we skip a promotion rule.
+                var innerTotalSkipDiscount = CalculateMinimumPossiblePrice(purchaseList, promotionValue > 0 ? promotions.Skip(1).ToDictionary(key => key.Key, value => value.Value) : promotions);
+
+                total += innerTotal <= innerTotalSkipDiscount ? innerTotal : innerTotalSkipDiscount;
+            }
+            else
+            {
+                purchaseList.ForEach(item => total += RateChart.ContainsKey(item) ? RateChart[item] : 0);
+            }
+            return total;
         }
     }
 }
