@@ -97,7 +97,27 @@ namespace PromotionSystem1._0.Services
 
         public Dictionary<List<char>, float> GetPromotionSimplified()
         {
-            throw new NotImplementedException();
+            var simplifiedPromotionList = new Dictionary<List<char>, float>();
+            List<char> individualPromotionItemsList;
+            PromotionList.ForEach(promotion => {
+                individualPromotionItemsList = new List<char>();
+                if (promotion.Item3 == PromotionTypes.MULTI)
+                {
+                    var multiple = promotion.Item1.Length > 1 ? Convert.ToInt32(promotion.Item1.Substring(0, promotion.Item1.Length - 1)) : 1;
+                    individualPromotionItemsList.AddRange(Enumerable.Repeat(Char.ToUpper(promotion.Item1[promotion.Item1.Length - 1]), multiple));
+                }
+                else if (promotion.Item3 == PromotionTypes.CUMULATIVE)
+                {
+                    var discountSeparated = promotion.Item1.Split('+').ToList();
+                    discountSeparated.ForEach(discount =>
+                    {
+                        var multiple = discount.Length > 1 ? Convert.ToInt32(discount.Substring(0, discount.Length - 1)) : 1;
+                        individualPromotionItemsList.AddRange(Enumerable.Repeat(Char.ToUpper(discount[discount.Length - 1]), multiple));
+                    });
+                }
+                simplifiedPromotionList.Add(individualPromotionItemsList, promotion.Item2);
+            });
+            return simplifiedPromotionList;
         }
 
         public float CalculateMinimumPossiblePrice(List<char> purchaseList, Dictionary<List<char>, float> simplifiedPromotionList)

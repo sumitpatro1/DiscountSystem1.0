@@ -82,7 +82,7 @@ namespace PromotionSystemTestProject
         }
 
         [Test]
-        public void TestCalculateTotalPricenPositive()
+        public void TestCalculateTotalPricePositive()
         {
             try
             {
@@ -113,7 +113,7 @@ namespace PromotionSystemTestProject
         {
             try
             {
-                promotionSvc.GetPurchaseList(String.Empty);
+                promotionSvc.GetPurchaseList("A");
                 Assert.Pass();
             }
             catch (SuccessException)
@@ -183,9 +183,9 @@ namespace PromotionSystemTestProject
                         { new List<char>{ 'A','B','C'}, 4 },
                     };
 
-                Assert.AreEqual(expected, actual);
+                Assert.AreEqual(expected.Keys.ToString(), actual.Keys.ToString());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Assert.Fail();
             }
@@ -199,9 +199,9 @@ namespace PromotionSystemTestProject
                 var expected = new Dictionary<List<char>, float>()
                     {
                         { new List<char>{ 'A','A','A'}, 2 },
-                        { new List<char>{ 'A','B','C'}, 3 },
+                        { new List<char>{ 'A','B'}, 3 },
                     };
-                Assert.AreNotEqual(expected, actual);
+                Assert.AreNotEqual(expected.Keys.ToString(), actual.Keys.ToString());
             }
             catch (Exception)
             {
