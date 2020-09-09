@@ -214,7 +214,7 @@ namespace PromotionSystemTestProject
         {
             try
             {
-                promotionSvc.CalculateMinimumPossiblePrice(null,0);
+                promotionSvc.CalculateMinimumPossiblePrice(null,null);
                 Assert.Pass();
             }
             catch (SuccessException)
