@@ -29,7 +29,24 @@ namespace PromotionSystem1._0.Services
 
         public float CalculateTotalPrice(string purchase)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //get simplified purchase list e.g., 3A = ['A','A','A']
+                List<char> purchaseList = GetPurchaseList(purchase);
+
+                // get simplified promotion list e.g., 3A+B = ['A', 'A', 'A', 'B']
+                var simplifiedPromotionList = GetPromotionSimplified();
+
+                //Calculate the minimum price possible
+                var val = CalculateMinimumPossiblePrice(purchaseList, simplifiedPromotionList);
+                return val;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error occured:{ex.Message}");
+                return 0;
+            }
+
         }
         public void DisplayRateChart()
         {
@@ -49,6 +66,19 @@ namespace PromotionSystem1._0.Services
             }
         }
 
+        public List<char> GetPurchaseList(string purchase)
+        {
+            throw new NotImplementedException();
+        }
 
+        public Dictionary<List<char>, float> GetPromotionSimplified()
+        {
+            throw new NotImplementedException();
+        }
+
+        public float CalculateMinimumPossiblePrice(List<char> purchaseList, Dictionary<List<char>, float> simplifiedPromotionList)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
