@@ -24,7 +24,7 @@ namespace PromotionSystemTestProject
                 { 'B', 2 },
                 { 'C', 3 },
                 { 'D', 4 }
-            }; ;
+            };
         }
 
         [Test]
@@ -182,8 +182,22 @@ namespace PromotionSystemTestProject
                         { new List<char>{ 'A','A','A'}, 2 },
                         { new List<char>{ 'A','B','C'}, 4 },
                     };
+                var expectedList = new List<string>();
+                foreach (var key in expected.Keys)
+                {
+                    expectedList.Add(new string(key.ToArray()) + expected[key].ToString());
+                }
 
-                Assert.AreEqual(expected.Keys.ToString(), actual.Keys.ToString());
+                var actualList = new List<string>();
+                foreach (var key in actual.Keys)
+                {
+                    actualList.Add(new string(key.ToArray()) + actual[key].ToString());
+                }
+                Assert.AreEqual(expectedList.Count, actualList.Count);
+                for (int counter = 0; counter < expectedList.Count; counter++)
+                {
+                    Assert.AreEqual(expectedList[counter], actualList[counter]);
+                }
             }
             catch (Exception ex)
             {
@@ -199,9 +213,28 @@ namespace PromotionSystemTestProject
                 var expected = new Dictionary<List<char>, float>()
                     {
                         { new List<char>{ 'A','A','A'}, 2 },
-                        { new List<char>{ 'A','B'}, 3 },
+                        { new List<char>{ 'A','B','C'}, 3 },
                     };
-                Assert.AreNotEqual(expected.Keys.ToString(), actual.Keys.ToString());
+                var expectedList = new List<string>();
+                foreach (var key in expected.Keys)
+                {
+                    expectedList.Add(new string(key.ToArray()) + expected[key].ToString());
+                }
+
+                var actualList = new List<string>();
+                foreach (var key in actual.Keys)
+                {
+                    actualList.Add(new string(key.ToArray()) + actual[key].ToString());
+                }
+                Assert.AreEqual(expectedList.Count, actualList.Count);
+                for (int counter = 0; counter < expectedList.Count; counter++)
+                {
+                    Assert.AreEqual(expectedList[counter], actualList[counter]);
+                }
+            }
+            catch (AssertionException)
+            {
+                Assert.Pass();
             }
             catch (Exception)
             {
