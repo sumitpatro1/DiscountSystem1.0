@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DiscountSystem1._0.Core
+namespace PromotionSystem1._0.Core
 {
-    public enum DiscountTypes { MULTI, CUMULATIVE }
+    public enum PromotionTypes { MULTI, CUMULATIVE }
 }

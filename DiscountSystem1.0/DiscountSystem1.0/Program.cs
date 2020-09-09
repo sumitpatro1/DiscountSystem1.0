@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DiscountSystem1._0
+namespace PromotionSystem1._0
 {
     class Program
     {

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountSystem1.0", "DiscountSystem1.0\DiscountSystem1.0.csproj", "{32876477-8AC7-4DE9-8296-BF487FE406DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionSystem1.0", "DiscountSystem1.0\PromotionSystem1.0.csproj", "{32876477-8AC7-4DE9-8296-BF487FE406DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountSystemTestProject", "DiscountSystemTestProject\DiscountSystemTestProject.csproj", "{C036BDD2-ED60-4057-89F8-F3EBEB3351F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PromotionSystemTestProject", "DiscountSystemTestProject\PromotionSystemTestProject.csproj", "{C036BDD2-ED60-4057-89F8-F3EBEB3351F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
