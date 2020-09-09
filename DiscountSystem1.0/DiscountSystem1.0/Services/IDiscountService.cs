@@ -4,7 +4,8 @@ using System.Text;
 
 namespace DiscountSystem1._0.Services
 {
-    class IDiscountService
+    interface IDiscountService
     {
+        float CalculateDiscount();
     }
 }

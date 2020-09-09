@@ -4,7 +4,5 @@ using System.Text;
 
 namespace DiscountSystem1._0.Core
 {
-    class Enums
-    {
-    }
+    public enum DiscountTypes { MULTI, CUMULATIVE }
 }
